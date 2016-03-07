@@ -3,6 +3,7 @@ package com.frrahat.microhelper;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
@@ -12,14 +13,8 @@ import android.content.Intent;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class MicroHelperMainActivity extends Activity {
 
@@ -39,6 +34,8 @@ public class MicroHelperMainActivity extends Activity {
 	
 	ArrayList<String> fragmentClassNames;
 
+	private final int settingsRequestCode=101;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -51,6 +48,44 @@ public class MicroHelperMainActivity extends Activity {
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
+		
+		final ActionBar actionBar = getActionBar();
+	    // Specify that tabs should be displayed in the action bar.
+	    actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+	    
+		// Create a tab listener that is called when the user changes tabs.
+	    ActionBar.TabListener tabListener = new ActionBar.TabListener() {
+	        public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+	            // When the tab is selected, switch to the
+	            // corresponding page in the ViewPager.
+	            mViewPager.setCurrentItem(tab.getPosition());
+	        }
+
+			@Override
+			public void onTabReselected(Tab arg0, FragmentTransaction arg1) {
+			}
+
+			@Override
+			public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+			}
+	    };
+	    
+	    // Add tabs, specifying the tab's text and TabListener
+	    String TabTexts[]={"Bin To HEX","Control Bits","Some Basics"};
+		for (int i = 0; i < TabTexts.length; i++) {
+			actionBar.addTab(actionBar.newTab().setText(TabTexts[i])
+					.setTabListener(tabListener));
+		}
+		
+		mViewPager.setOnPageChangeListener(
+	            new ViewPager.SimpleOnPageChangeListener() {
+	                @Override
+	                public void onPageSelected(int position) {
+	                    // When swiping between pages, select the
+	                    // corresponding tab.
+	                    getActionBar().setSelectedNavigationItem(position);
+	                }
+	            });
 
 	}
 
@@ -68,7 +103,8 @@ public class MicroHelperMainActivity extends Activity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
-			Toast.makeText(getBaseContext(), "No Settings added in this version", Toast.LENGTH_SHORT).show();
+			this.startActivityForResult(SettingsActivity.start(this),
+					 settingsRequestCode);			
 			return true;
 		}
 		if (id == R.id.action_about) {
@@ -78,7 +114,15 @@ public class MicroHelperMainActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		if(requestCode==settingsRequestCode){
+			BasicInfosFragment.updateTextSize(getBaseContext());
+		}
+	}
 	/**
 	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
 	 * one of the sections/tabs/pages.

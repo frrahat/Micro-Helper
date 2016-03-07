@@ -1,7 +1,5 @@
 package com.frrahat.microhelper;
 
-import java.util.Locale;
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -59,14 +57,14 @@ public class ConverterFragment extends Fragment {
 				k=binString.charAt(i);
 				if(i%4==0){
 					binDisplayString+=" "+k;
-					hexDisplayString+=Integer.toHexString(hexVal);
+					hexDisplayString+=getHexChar(hexVal);
 					hexVal=(k-48)*HEX_MAP[0];
 				}else{
 					binDisplayString+=k;
 					hexVal+=(k-48)*HEX_MAP[i%4];
 				}
 			}
-			hexDisplayString+=Integer.toHexString(hexVal);
+			hexDisplayString+=getHexChar(hexVal);
 		}
 		
 		int inCompleteBit=(4-binString.length()%4)%4;
@@ -75,7 +73,7 @@ public class ConverterFragment extends Fragment {
 		}
 		
 		binTextView.setText(binDisplayString);
-		hexTextView.setText(hexDisplayString.toUpperCase(Locale.getDefault()));
+		hexTextView.setText(hexDisplayString);
 	}
 	
 	private void setButtonActions(){
@@ -121,5 +119,17 @@ public class ConverterFragment extends Fragment {
 				}
 			}
 		});
+	}
+	
+	/*
+	 * value should be less than 16
+	 */
+	public static char getHexChar(int val){
+		if(val<10){
+			char c= (char) (val+48); 
+			return c;
+		}
+		char c= (char) ('A'+val-10);
+		return c;
 	}
 }

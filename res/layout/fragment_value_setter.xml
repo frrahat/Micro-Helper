@@ -64,6 +64,7 @@
         android:columnCount="2"
         android:rowCount="7"
         android:useDefaultMargins="true"
+        android:paddingBottom="50dp"
          >
 
         <TextView
@@ -71,7 +72,7 @@
             android:layout_column="0"
             android:layout_gravity="left"
             android:layout_row="0"
-            android:text="I/O mode"
+            android:text="Operation mode"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#f0f" />
 
@@ -84,7 +85,7 @@
         <TextView
             android:id="@+id/textView2"
             android:layout_gravity="left"
-            android:text="Grp A Mode"
+            android:text="Group A Mode"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#f0f" />
 
@@ -97,7 +98,7 @@
         <TextView
             android:id="@+id/textView3"
             android:layout_gravity="left"
-            android:text="Grp A port A"
+            android:text="Group A port A"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#f0f" />
 
@@ -110,7 +111,7 @@
         <TextView
             android:id="@+id/textView4"
             android:layout_gravity="left"
-            android:text="Grp A port Cu"
+            android:text="Group A port Cu"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#f0f" />
 
@@ -123,7 +124,7 @@
         <TextView
             android:id="@+id/textView5"
             android:layout_gravity="left"
-            android:text="Grp B Mode"
+            android:text="Group B Mode"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#f0f" />
 
@@ -136,7 +137,7 @@
         <TextView
             android:id="@+id/textView6"
             android:layout_gravity="left"
-            android:text="Grp B port B"
+            android:text="Group B port B"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#f0f" />
 
@@ -149,7 +150,7 @@
         <TextView
             android:id="@+id/textView7"
             android:layout_gravity="left"
-            android:text="Grp B port Cl"
+            android:text="Group B port Cl"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#f0f" />
 

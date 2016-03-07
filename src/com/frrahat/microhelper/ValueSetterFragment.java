@@ -1,7 +1,6 @@
 package com.frrahat.microhelper;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -24,12 +23,12 @@ public class ValueSetterFragment extends Fragment {
 	final int HEX_MAP[]={8,4,2,1};
 	
 	String spinnerItemStrings[][]={
-			{"I/0 Mode", "Memory Mode"},
-			{"Mode 0 (Simple I/0)","Mode 1 (Sngl HndShk)","Mode 2 (Dbl HndShk)"},
+			{"I/0 Mode", "BSR Mode"},
+			{"Mode 0 (Simple I/O)","Mode 1 (Strobed I/O)","Mode 2 (Strobed Bi-Di I/O)"},
 			{"Input","Output","X"},
 			{"Input","Output","X"},
-			{"Mode 0","Mode 1","X"},
-			{"Input","Output","X"},
+			{"Mode 0 (Simple I/O)","Mode 1 (Strobed I/O)","X"},
+			{"Output","Input","X"},
 			{"Input","Output","X"}};
 	
 	String spinnerItemValues[][]={
@@ -38,7 +37,7 @@ public class ValueSetterFragment extends Fragment {
 			{"1","0","X"},
 			{"1","0","X"},
 			{"0","1","X"},
-			{"1","0","X"},
+			{"0","1","X"},
 			{"1","0","X"}};
 	
 	int valueIndices[];
@@ -158,14 +157,14 @@ public class ValueSetterFragment extends Fragment {
 		for(int i=1;i<bitString.length();i++){
 			int k=bitString.charAt(i)-48;
 			if(i%4==0){
-				hexString+=Integer.toHexString(hexValue);
+				hexString+=ConverterFragment.getHexChar(hexValue);
 				hexValue=k*HEX_MAP[i%4];
 			}else{
 				hexValue+=k*HEX_MAP[i%4];
 			}
 		}
-		hexString+=Integer.toHexString(hexValue);
+		hexString+=ConverterFragment.getHexChar(hexValue);
 		
-		hexValueTextView.setText(hexString.toUpperCase(Locale.getDefault()));
+		hexValueTextView.setText(hexString);
 	}
 }

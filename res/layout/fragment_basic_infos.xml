@@ -5,14 +5,6 @@
     android:background="@android:color/background_dark"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textView_sayBasicInfos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sayBasicInfos"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#f0f" />
-
     <ScrollView
         android:id="@+id/ScrollView1"
         android:layout_width="match_parent"
