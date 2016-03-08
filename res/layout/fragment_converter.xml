@@ -10,7 +10,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.frrahat.microhelper.MicroHelperMainActivity$PlaceholderFragment" >
+    tools:context="com.frrahat.microhelper.MicroHelperMainActivity$PlaceholderFragment" 
+    android:keepScreenOn="true" >
 
     <TextView
         android:id="@+id/textView_sayBinary"
@@ -33,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:background="@drawable/sym_keyboard_delete_holo" />
+        android:background="@drawable/selector_del_button" />
 
     <Space
         android:layout_width="wrap_content"
@@ -70,7 +71,7 @@
                 android:id="@+id/button_zero"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/number_zero_in_a_circle" />
+                android:background="@drawable/selector_zero_button" />
             
             <Space
         		android:layout_width="@dimen/text_view_text_size"
@@ -80,7 +81,7 @@
                 android:id="@+id/button_one"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/number_one_in_a_circle" />
+                android:background="@drawable/selector_one_button" />
 
         </LinearLayout>
 

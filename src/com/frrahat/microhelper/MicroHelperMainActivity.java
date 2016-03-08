@@ -10,9 +10,11 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -92,6 +94,8 @@ public class MicroHelperMainActivity extends Activity {
 		//initializing digital typeface
 		digitalTypeFaces=new ArrayList<>();
 		digitalTypeFaces.add(Typeface.createFromAsset(getAssets(), "fonts/ChessType.ttf"));
+		
+		updateIfKeepScreenOn();
 	}
 
 	@Override
@@ -125,6 +129,7 @@ public class MicroHelperMainActivity extends Activity {
 		super.onActivityResult(requestCode, resultCode, data);
 		if(requestCode==settingsRequestCode){
 			BasicInfosFragment.updateTextSize(getBaseContext());
+			updateIfKeepScreenOn();
 		}
 	}
 	/**
@@ -173,5 +178,10 @@ public class MicroHelperMainActivity extends Activity {
 			return Typeface.DEFAULT;
 		
 		return digitalTypeFaces.get(k);
+	}
+	
+	private void updateIfKeepScreenOn(){
+		SharedPreferences sharedPrefs=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+		mViewPager.setKeepScreenOn(sharedPrefs.getBoolean(getString(R.string.key_keepScreenOn), true));
 	}
 }

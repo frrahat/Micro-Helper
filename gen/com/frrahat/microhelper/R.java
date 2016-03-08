@@ -30,9 +30,15 @@ public final class R {
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
         public static final int number_one_in_a_circle=0x7f020001;
-        public static final int number_zero_in_a_circle=0x7f020002;
-        public static final int sym_keyboard_delete_holo=0x7f020003;
-        public static final int text_view_shape_special=0x7f020004;
+        public static final int number_one_in_a_circle_focused=0x7f020002;
+        public static final int number_zero_in_a_circle=0x7f020003;
+        public static final int number_zero_in_a_circle_focused=0x7f020004;
+        public static final int selector_del_button=0x7f020005;
+        public static final int selector_one_button=0x7f020006;
+        public static final int selector_zero_button=0x7f020007;
+        public static final int sym_keyboard_delete_focus=0x7f020008;
+        public static final int sym_keyboard_delete_holo=0x7f020009;
+        public static final int text_view_shape_special=0x7f02000a;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f0a0007;
@@ -91,12 +97,14 @@ public final class R {
         public static final int app_name=0x7f060000;
         public static final int hello_world=0x7f060004;
         public static final int key_fontSize=0x7f06000a;
+        public static final int key_keepScreenOn=0x7f06000f;
         public static final int sayBinary=0x7f060006;
         public static final int sayHex=0x7f060007;
         public static final int textSize_summary=0x7f06000c;
         public static final int title_activity_about=0x7f060008;
         public static final int title_activity_settings=0x7f06000d;
         public static final int title_fontSize=0x7f06000b;
+        public static final int title_keepScreenOn=0x7f06000e;
         public static final int title_section1=0x7f060001;
         public static final int title_section2=0x7f060002;
         public static final int title_section3=0x7f060003;

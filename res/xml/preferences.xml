@@ -9,5 +9,11 @@
         android:key="@string/key_fontSize"
         android:title="@string/title_fontSize"
         android:summary="@string/textSize_summary" />
-
+	
+    <CheckBoxPreference
+        android:defaultValue="1"
+        android:title="@string/title_keepScreenOn"
+		android:key="@string/key_keepScreenOn"
+		/>
+    
 </PreferenceScreen>
