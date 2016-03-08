@@ -10,6 +10,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -35,6 +36,7 @@ public class MicroHelperMainActivity extends Activity {
 	ArrayList<String> fragmentClassNames;
 
 	private final int settingsRequestCode=101;
+	private static ArrayList<Typeface> digitalTypeFaces;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +88,10 @@ public class MicroHelperMainActivity extends Activity {
 	                    getActionBar().setSelectedNavigationItem(position);
 	                }
 	            });
-
+		
+		//initializing digital typeface
+		digitalTypeFaces=new ArrayList<>();
+		digitalTypeFaces.add(Typeface.createFromAsset(getAssets(), "fonts/ChessType.ttf"));
 	}
 
 	@Override
@@ -117,7 +122,6 @@ public class MicroHelperMainActivity extends Activity {
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
 		if(requestCode==settingsRequestCode){
 			BasicInfosFragment.updateTextSize(getBaseContext());
@@ -162,5 +166,12 @@ public class MicroHelperMainActivity extends Activity {
 			return null;
 		}
 	}
-
+	
+	
+	public static Typeface getDigitalTypeFace(int k){
+		if(k>=digitalTypeFaces.size())
+			return Typeface.DEFAULT;
+		
+		return digitalTypeFaces.get(k);
+	}
 }

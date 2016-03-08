@@ -23,7 +23,7 @@ public class ValueSetterFragment extends Fragment {
 	final int HEX_MAP[]={8,4,2,1};
 	
 	String spinnerItemStrings[][]={
-			{"I/0 Mode", "BSR Mode"},
+			{"I/0 Mode", "BSR Mode (don't use)"},
 			{"Mode 0 (Simple I/O)","Mode 1 (Strobed I/O)","Mode 2 (Strobed Bi-Di I/O)"},
 			{"Input","Output","X"},
 			{"Input","Output","X"},
@@ -50,6 +50,8 @@ public class ValueSetterFragment extends Fragment {
 		
 		binaryValueTextView=(TextView) valueSetterView.findViewById(R.id.textView_binaryValueBits);
 		hexValueTextView=(TextView) valueSetterView.findViewById(R.id.textView_hexValueString);
+		
+		binaryValueTextView.setTypeface(MicroHelperMainActivity.getDigitalTypeFace(0));
 		
 		spinnerList = new ArrayList<>();
 		//IOmodeSpinner

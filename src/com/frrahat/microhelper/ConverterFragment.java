@@ -32,6 +32,9 @@ public class ConverterFragment extends Fragment {
 		binTextView=(TextView) converterView.findViewById(R.id.textView_binary);
 		hexTextView=(TextView) converterView.findViewById(R.id.textView_hex);
 		
+		binTextView.setTypeface(MicroHelperMainActivity.getDigitalTypeFace(0));
+		//hexTextView.setTypeface(MicroHelperMainActivity.getDigitalTypeFace(1));
+		
 		binString="";
 		
 		delButton=(Button) converterView.findViewById(R.id.button_del);
