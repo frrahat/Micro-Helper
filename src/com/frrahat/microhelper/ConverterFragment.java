@@ -1,5 +1,7 @@
 package com.frrahat.microhelper;
 
+import com.frrahat.microhelper.DecimalInputDialog.DecimalInputListener;
+
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,11 +16,14 @@ public class ConverterFragment extends Fragment {
 	
 	TextView binTextView;
 	TextView hexTextView;
+	TextView decimalEntryButton;
 	Button delButton;
 	Button zeroButton;
 	Button oneButton;
 	
 	String binString;
+	
+	DecimalInputDialog decimalInputDialog;
 	
 	final int MAX_DIGIT=16;
 	final int HEX_MAP[]={8,4,2,1};
@@ -31,6 +36,16 @@ public class ConverterFragment extends Fragment {
 		
 		binTextView=(TextView) converterView.findViewById(R.id.textView_binary);
 		hexTextView=(TextView) converterView.findViewById(R.id.textView_hex);
+		decimalEntryButton=(TextView) converterView.findViewById(R.id.textView_decimal);
+		
+		decimalInputDialog = new DecimalInputDialog();
+		decimalInputDialog.setInputListener(new DecimalInputListener() {
+			
+			@Override
+			public void inputGiven(String inputString) {
+				doAfterDecimalInputGiven(inputString);
+			}
+		});
 		
 		binTextView.setTypeface(MicroHelperMainActivity.getDigitalTypeFace(0));
 		//hexTextView.setTypeface(MicroHelperMainActivity.getDigitalTypeFace(1));
@@ -44,7 +59,7 @@ public class ConverterFragment extends Fragment {
 		setButtonActions();
 		return converterView;
 	}
-	
+
 	private void updateTextViews(){
 		String binDisplayString="";
 		String hexDisplayString="";
@@ -80,6 +95,21 @@ public class ConverterFragment extends Fragment {
 	}
 	
 	private void setButtonActions(){
+		decimalEntryButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if(binString.length()!=0){
+					int value=Integer.parseInt(binString, 2);
+					//shifting left
+					value<<=(4-binString.length()%4)%4;
+
+					decimalInputDialog.setHintText(Integer.toString(value));
+				}
+				decimalInputDialog.show(getFragmentManager(), "decimalInputDialog");
+			}
+		});
+		
 		delButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -122,6 +152,19 @@ public class ConverterFragment extends Fragment {
 				}
 			}
 		});
+	}
+	
+	private void doAfterDecimalInputGiven(String inputString) {
+		if(inputString==null || inputString.length()==0)
+			return;
+		String binaryValueString=Integer.toBinaryString(Integer.parseInt(inputString));
+		
+		String preZeroString="";
+		int preZeros=(4-binaryValueString.length()%4)%4;
+		for(int i=0;i<preZeros;i++)
+			preZeroString+="0";
+		binString=preZeroString+binaryValueString;
+		updateTextViews();
 	}
 	
 	/*
